@@ -9,7 +9,7 @@ email: cody.nguyen94@gmail.com
 description: >-
   A blog.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "/" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /blog/:slug
 timezone: America/New_York
 future: false
