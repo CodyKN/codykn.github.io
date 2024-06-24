@@ -16,6 +16,7 @@ future: false
 
 # Build settings
 theme: jekyll-bear-theme
+remote_theme: jekyll-bear-theme
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
