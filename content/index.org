@@ -1,3 +1,5 @@
 #+title: Cody Nguyen
 
 * Hi welcome to my site
+
+[[./about.org][About]]
