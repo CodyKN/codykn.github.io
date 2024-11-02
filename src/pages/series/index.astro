@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/Base";
+import {
+	getUniqueWithCountByProperty,
+} from "@/utils";
+import type { CollectionEntry } from "astro:content";
+
+const posts = await getCollection("blog", ({ data }) => {
+	return import.meta.env.PROD ? data.draft !== true : true;
+});
+
+const series = getUniqueWithCountByProperty(
+	"series",
+	posts as Array<CollectionEntry<"blog">>,
+);
+---
+
+<BaseLayout title="Series">
+	<h1 class="title flex font-bold text-xl items-center mb-4">Series</h1>
+	<ul>
+		{
+			series.map(([s, count]) => (
+				<li class="my-2">
+					<a class="cody-link" href={`/series/${s}`}>
+						#{s}
+					</a>
+					({count})
+				</li>
+			))
+		}
+	</ul>
+</BaseLayout>
