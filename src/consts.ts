@@ -86,5 +86,5 @@ export const SOCIAL_LINKS: Array<SocialLink> = [
 ];
 
 export const NAV_LINKS: string[] = [
-  "home", "about", "blog", "projects", "series"
+  "home", "about", "projects", "blog", "series"
 ];

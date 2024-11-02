@@ -47,7 +47,7 @@ const articleDate = pubDate.toISOString();
 			{
 				platform && (
 					<li class="project-frontmatter-item">
-						<small>{platform}</small>
+						<small>PLATFORM</small>
 						<span>{platform}</span>
 					</li>
 				)
@@ -55,7 +55,7 @@ const articleDate = pubDate.toISOString();
 			{
 				stack && (
 					<li class="project-frontmatter-item">
-						<small>{stack}</small>
+						<small>STACK</small>
 						<ul class="inline-flex gap-2 sm:gap-4">
 							{stack.map((s: string) => (
 								<li>
@@ -74,7 +74,7 @@ const articleDate = pubDate.toISOString();
 			{
 				website && (
 					<li class="project-frontmatter-item">
-						<small>{website}</small>
+						<small>WEBSITE</small>
 						<a href={website} target="_blank" class="cody-link">
 							{website}
 						</a>
