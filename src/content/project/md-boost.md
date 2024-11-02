@@ -8,5 +8,5 @@ heroImage:
 platform: Web
 stack: ['next', 'tailwind', 'cypress']
 website: https://mdboost.app
-order: 1
+orderPlaceholder: 1
 ---
