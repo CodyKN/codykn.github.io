@@ -8,9 +8,7 @@ import {
 	sortMDByDate,
 	getPostsBySeries,
 } from "@/utils";
-import PostPreview from "@/components/blog/PostPreviewA";
-// Alternative post item
-// import PostPreview from '@/components/blog/PostPreviewB';
+import PostPreview from "@/components/PostPreview";
 
 import Pagination from "@/components/Pagination";
 import { siteConfig } from "src/consts";
@@ -66,7 +64,7 @@ const paginationProps = {
 		<span class="me-3 ms-2">→</span>
 		<span>#{series}</span>
 	</h1>
-	<ul class="flex flex-col gap-4">
+	<ul class="flex flex-col gap-8">
 		{page.data.map((post) => <PostPreview post={post} withDesc />)}
 	</ul>
 	<Pagination {...paginationProps} />

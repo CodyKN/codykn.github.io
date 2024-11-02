@@ -1,9 +1,6 @@
 // This is your config file, place any global data here.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-import type nav from "./i18n/nav";
-import ui from "./i18n/ui";
-
 type Config = {
   title: string;
   description: string;
@@ -23,39 +20,63 @@ type SocialLink = {
   link: string;
 }
 
+export const NAV = {
+    "home": {
+        text: "Home",
+        slug: ""
+    },
+    "about": {
+        text: "About",
+        slug: "about"
+    },
+    "blog": {
+        text: "Blog",
+        slug: "blog",
+        route: "/blog"
+    },
+    "projects": {
+        text: "Projects",
+        slug: "projects",
+        route: "/projects/pages/1"
+    },
+    "tags": {
+        text: "Tags",
+        slug: "tags"
+    },
+    "series": {
+        text: "Series",
+        slug: "series"
+    }
+}
+
 export const siteConfig: Config = {
-  title: ui["site.title"].text,
-  description: ui["site.description"].text,
+  title: "Cody",
+  description: "A minimalist blog theme built with Astro. A quick and easy starter build for anyone who wants to start their own blog.",
   lang: "en",
   profile: {
-    author: "Amy Dang",
-    description: ui["profile.description"].text
+    author: "Cody Nguyen",
+    description: "your bio description",
   },
   settings: {
     paginationSize: 10
   }
 }
 
-/** 
-  These are you social media links. 
-  It uses https://github.com/natemoo-re/astro-icon#readme
-  You can find icons @ https://icones.js.org/
-*/
 export const SOCIAL_LINKS: Array<SocialLink> = [
   {
     icon: "mdi:github",
     friendlyName: "Github",
-    link: "https://github.com/kirontoo/astro-theme-cody",
+    link: "https://github.com/codykn",
   },
   {
     icon: "mdi:linkedin",
     friendlyName: "LinkedIn",
-    link: "#",
+    link: "https://linkedin.com/codynguyen94",
   },
   {
     icon: "mdi:email",
     friendlyName: "email",
-    link: "mailto:ndangamy@gmail.com",
+    link: "codykn.resurface919@passmail.net",
   },
   {
     icon: "mdi:rss",
@@ -65,5 +86,5 @@ export const SOCIAL_LINKS: Array<SocialLink> = [
 ];
 
 export const NAV_LINKS: string[] = [
-  "home", "about", "blog", "projects", "archive", "series"
+  "home", "about", "blog", "projects", "series"
 ];

@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import ui from "@/i18n/ui"
 import Layout from "./Sidebar.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import SocialMediaLinks from "@/components/SocialMediaLinks";
@@ -97,7 +96,7 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
 				{
 					updatedDate && (
 						<div class="italic px-2 bg-accent-2 w-fit text-sm font-normal">
-							{ui["blog.lastUpdated"].text}{" "}
+							Last Updated:
 							<FormattedDate
 								date={updatedDate}
 								dateTimeOptions={dateTimeOptions}
@@ -137,11 +136,7 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
 			<h2 class="font-semibold text-lg text-textColor">
 				{siteConfig.profile.author}
 			</h2>
-			{
-				siteConfig.profile.description && (
-					<p>{ui["profile.description"].text}</p>
-				)
-			}
+			<p>{siteConfig.profile.description}</p>
 			<SocialMediaLinks />
 			<span class="!my-4 text-accent" aria-hidden>---</span>
 			<p>

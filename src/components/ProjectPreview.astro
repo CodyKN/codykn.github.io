@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import type { HTMLTag, Polymorphic } from "astro/types";
-import FormattedDate from "@/components/FormattedDate";
 import { Icon } from "astro-icon";
 import { getSlugFromCollectionEntry } from "@/utils";
 
@@ -34,9 +33,6 @@ const urlBasePath =
 			)
 		}
 	</span>
-	<p class="date pr-2 mt-1">
-		<FormattedDate date={postDate} />
-	</p>
 	{withDesc && <p class="italic">{post.data.description}</p>}
 </li>
 <style>

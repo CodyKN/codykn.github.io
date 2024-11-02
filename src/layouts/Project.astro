@@ -5,7 +5,6 @@ import SocialMediaLinks from "@/components/SocialMediaLinks";
 import TOC from "@/components/TableOfContents";
 import { Icon } from "astro-icon";
 import type { CollectionEntry } from "astro:content";
-import ui from "@/i18n/ui";
 
 interface Props {
 	project: CollectionEntry<"project">;
@@ -48,7 +47,7 @@ const articleDate = pubDate.toISOString();
 			{
 				platform && (
 					<li class="project-frontmatter-item">
-						<small>{ui["project.platform"].text}</small>
+						<small>{platform}</small>
 						<span>{platform}</span>
 					</li>
 				)
@@ -56,7 +55,7 @@ const articleDate = pubDate.toISOString();
 			{
 				stack && (
 					<li class="project-frontmatter-item">
-						<small>{ui["project.stack"].text}</small>
+						<small>{stack}</small>
 						<ul class="inline-flex gap-2 sm:gap-4">
 							{stack.map((s: string) => (
 								<li>
@@ -75,7 +74,7 @@ const articleDate = pubDate.toISOString();
 			{
 				website && (
 					<li class="project-frontmatter-item">
-						<small>{ui["project.website"].text}</small>
+						<small>{website}</small>
 						<a href={website} target="_blank" class="cody-link">
 							{website}
 						</a>
@@ -107,11 +106,7 @@ const articleDate = pubDate.toISOString();
 			<h2 class="font-semibold text-lg text-textColor">
 				{siteConfig.profile.author}
 			</h2>
-			{
-				siteConfig.profile.description && (
-					<p>{ui["profile.description"].text}</p>
-				)
-			}
+			<p>{siteConfig.profile.description}</p>
 			<SocialMediaLinks />
 			<span class="!my-4 text-accent" aria-hidden>---</span>
 			<p>

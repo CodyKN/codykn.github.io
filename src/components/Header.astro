@@ -2,12 +2,12 @@
 import HeaderLink from "./HeaderLink.astro";
 import { siteConfig, NAV_LINKS } from "../consts";
 import ThemeToggle from "@/components/ThemeToggle";
-import navT from "@/i18n/nav";
+import { NAV } from '../consts';
 
 const url = new URL(Astro.request.url);
 
 function buildNavLink(nav: string): string {
-	const t = (navT as any)[nav];
+	const t = (NAV as any)[nav];
 	if (t.route) return t.route;
 
 	return nav != "home" ? `/${t.slug}/` : "/";
