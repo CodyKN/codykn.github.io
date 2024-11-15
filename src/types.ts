@@ -8,6 +8,7 @@ export interface SiteConfig {
 	lang: string;
 	ogLocale: string;
 	sortPostsByUpdatedDate: boolean;
+	sortProjectsByUpdatedDate: boolean;
 	title: string;
 }
 

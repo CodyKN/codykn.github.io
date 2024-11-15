@@ -21,8 +21,9 @@ export const siteConfig: SiteConfig = {
 	ogLocale: "en_GB",
 	// Option to sort posts by updatedDate if set to true (if property exists). Default (false) will sort by publishDate
 	sortPostsByUpdatedDate: false,
+	sortProjectsByUpdatedDate: false,
 	// Used to construct the meta title property found in src/components/BaseHead.astro L:11, and webmanifest name found in astro.config.ts L:42
-	title: "Astro Theme Cactus",
+	title: "Cody Nguyen",
 };
 
 // Used to generate links in both the Header & Footer.
@@ -34,6 +35,10 @@ export const menuLinks: { path: string; title: string }[] = [
 	{
 		path: "/about/",
 		title: "About",
+	},
+	{
+		path: "/projects/",
+		title: "Projects",
 	},
 	{
 		path: "/posts/",
