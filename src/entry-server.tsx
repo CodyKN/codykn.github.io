@@ -14,8 +14,13 @@ export default createHandler(() => (
                     <link rel="icon" href="/icon.svg" />
                     {assets}
                 </head>
-                <body class="mx-auto flex min-h-screen max-w-4xl flex-col px-4 pt-4 antialiased sm:px-8">
-                    <div id="app">{children}</div>
+                <body>
+                    <div
+                        id="app"
+                        class="mx-auto flex min-h-screen max-w-4xl flex-col px-4 pt-4 antialiased sm:px-8"
+                    >
+                        {children}
+                    </div>
                     {scripts}
                 </body>
             </html>
