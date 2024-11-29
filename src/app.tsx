@@ -1,9 +1,9 @@
+import "./app.css";
 import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
-import { Header } from "~/layouts/Header2";
+import { Header } from "~/layouts/Header";
 import { Footer } from "./layouts/Footer";
-import "./app.css";
 
 export default function App() {
     return (
