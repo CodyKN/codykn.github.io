@@ -20,6 +20,7 @@
     "node": ">=18"
   },
   "devDependencies": {
-    "prettier": "^3.4.1"
+    "prettier": "^3.4.1",
+    "vite-plugin-solid-markdown": "^0.0.6"
   }
 }
