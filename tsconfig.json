@@ -7,10 +7,7 @@
         "jsxImportSource": "solid-js",
         "baseUrl": ".",
         "paths": {
-            "@assets/*": ["src/assets/*"],
-            "@config/*": ["src/config/*"],
-            "@components/*": ["src/components/*"],
-            "@layouts/*": ["src/layouts/*"]
+            "@/*": ["src/*"]
         }
     }
 }

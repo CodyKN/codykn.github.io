@@ -1,4 +1,4 @@
-import { MenuLinks } from "@config/MenuLinks";
+import { MenuLinks } from "@/config/MenuLinks";
 import { createSignal } from "solid-js";
 import { FaSolidBars } from "solid-icons/fa";
 

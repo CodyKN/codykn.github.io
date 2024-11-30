@@ -1,4 +1,4 @@
-import { SiteConfig } from "@config/SiteConfig";
+import { SiteConfig } from "@/config/SiteConfig";
 
 interface SocialListProps {
     class?: string;

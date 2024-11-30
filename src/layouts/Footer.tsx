@@ -1,6 +1,6 @@
-import { SiteConfig } from "@config/SiteConfig";
-import { MenuLinks } from "@config/MenuLinks";
-import { SocialList } from "@components/SocialList";
+import { SiteConfig } from "@/config/SiteConfig";
+import { MenuLinks } from "@/config/MenuLinks";
+import { SocialList } from "@/components/SocialList";
 
 export const Footer = () => {
     const year = new Date().getFullYear();
