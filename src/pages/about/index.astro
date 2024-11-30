@@ -1,0 +1,23 @@
+---
+import { SocialList } from "@components/SocialList";
+import blushImage from "./_blush.png";
+import BaseLayout from '@layouts/Base.astro';
+---
+
+<BaseLayout>
+    <div class="flex flex-col items-center space-y-6">
+        <p>
+            Hi, I don't like to post things online. This is just a place
+            to put my projects.
+        </p>
+        <div class="flex items-center gap-x-1">
+            Find me here: <SocialList class="h-8 w-8" />
+        </div>
+        <div class="max-w-80 pt-16">
+            <img
+                src={blushImage.src}
+                alt="A picture of me blushing."
+            />
+        </div>
+    </div>
+</BaseLayout>
