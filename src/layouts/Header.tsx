@@ -16,7 +16,7 @@ export const Header = () => {
                     onclick={() => setMenuOpen(false)}
                     class="text-xl font-bold sm:text-2xl"
                 >
-                    Snot Boogie
+                    Koi Fish Digital
                 </a>
                 <nav
                     aria-label="Main menu"
