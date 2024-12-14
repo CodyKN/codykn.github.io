@@ -2,13 +2,13 @@
 import BaseLayout from '@/layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const projects = await getCollection("notes");
+const works = await getCollection("work");
 ---
 
 <BaseLayout>
-    {projects.map(p => (
+    {works.map(p => (
         <div class=" underline text-xl hover:text-gray-500">
-            <a href={`/notes/${p.slug}`}>{p.data.title}</a>
+            <a href={`/work/${p.slug}`}>{p.data.title}</a>
         </div>
     ))}
 </BaseLayout>
