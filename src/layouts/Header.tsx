@@ -16,7 +16,7 @@ export const Header = () => {
                     onclick={() => setMenuOpen(false)}
                     class="text-xl font-bold sm:text-2xl"
                 >
-                    Koi Fish Digital
+                    Cody Nguyen
                 </a>
                 <nav
                     aria-label="Main menu"

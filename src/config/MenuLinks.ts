@@ -4,7 +4,7 @@ export const MenuLinks = [
         href: "/",
     },
     {
-        label: "Work",
-        href: "/work",
+        label: "Posts",
+        href: "/posts",
     },
 ];
