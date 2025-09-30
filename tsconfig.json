@@ -1,13 +1,11 @@
 {
-    "extends": "astro/tsconfigs/strict",
-    "include": [".astro/types.d.ts", "**/*"],
-    "exclude": ["dist"],
-    "compilerOptions": {
-        "jsx": "preserve",
-        "jsxImportSource": "solid-js",
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["src/*"]
-        }
-    }
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "target": "esnext",
+    "module": "Node16",
+    "moduleResolution": "node16"
+  }
 }

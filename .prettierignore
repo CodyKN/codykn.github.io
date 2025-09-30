@@ -1,2 +1,15 @@
-node_modules
-.astro
+# Ignore everything
+/*
+
+# Except these files & folders
+!.cache
+!/src
+!/public
+!/.github
+!*.json
+!*.mjs
+!*.ts
+!astro.config.ts
+!package.json
+!.prettierrc
+!README.md

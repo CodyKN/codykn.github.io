@@ -1,14 +1,19 @@
 // @ts-check
-// @ts-check
 import { defineConfig } from "astro/config";
-
-import solidJs from "@astrojs/solid-js";
-
-import tailwind from "@astrojs/tailwind";
-
 import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-    integrations: [solidJs(), tailwind(), mdx()],
+  site: "https://codykn.github.io",
+  base: "/",
+  integrations: [mdx(), sitemap()],
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: "min-light",
+      },
+      wrap: true,
+    },
+  },
 });
