@@ -24,7 +24,6 @@ const {
 } = Astro.props;
 
 const faviconURL = generateURL("/favicon.svg");
-const rssURL = generateURL("/rss.xml");
 const ogImageURL = image.startsWith("http") ? image : generateURL(image);
 const toggleThemeURL = generateURL("/toggle-theme.js");
 ---
@@ -34,14 +33,6 @@ const toggleThemeURL = generateURL("/toggle-theme.js");
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href={faviconURL} />
 <meta name="generator" content={Astro.generator} />
-
-<!-- rss -->
-<link
-  rel="alternate"
-  type="application/rss+xml"
-  title={SITE_TITLE}
-  href={rssURL}
-/>
 
 <!-- Font preloads -->
 <!-- <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin /> -->
