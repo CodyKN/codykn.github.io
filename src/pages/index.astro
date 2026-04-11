@@ -1,12 +1,159 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { SITE_DESCRIPTION } from "../consts";
+import FormattedDate from "../components/FormattedDate.astro";
+import { SITE_DESCRIPTION, SOCIAL_LINKS, BLOG_CONFIG } from "../consts";
+import icons, { getSizedIcon } from "../assets/icons";
+import { getCollection } from "astro:content";
+import { generateURL } from "../utils";
+
+const collections = [
+  "business",
+  "finance",
+  "ml",
+  "medical",
+  "robotics",
+] as const;
+
+const allProjects = (
+  await Promise.all(
+    collections.map(async name => {
+      const entries = await getCollection(name);
+      return entries.map(entry => ({ ...entry, collection: name }));
+    })
+  )
+).flat();
+
+const projectsByCategory = collections
+  .map(name => ({
+    name,
+    label: name.charAt(0).toUpperCase() + name.slice(1),
+    entries: allProjects
+      .filter(p => p.collection === name)
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+  }))
+  .filter(cat => cat.entries.length > 0);
 ---
 
 <Layout>
-  <div class="prose">
-    <p>
-      {SITE_DESCRIPTION}
+  <section class="hero">
+    <p class="bio">
+      I like working on problems that sit between fields — software, medicine,
+      robotics, finance. Mostly building things and figuring out what's useful.
     </p>
-  </div>
+    <div class="hero-links">
+      {
+        Object.entries(SOCIAL_LINKS).map(([key, value]) => {
+          if (!value) return null;
+          return (
+            <a
+              href={value}
+              rel="noopener noreferrer"
+              target="_blank"
+              aria-label={key}
+              title={key}
+            >
+              <Fragment
+                set:html={getSizedIcon(key as keyof typeof icons, 18) ?? ""}
+              />
+              <span>{key}</span>
+            </a>
+          );
+        })
+      }
+      {
+        BLOG_CONFIG.email && (
+          <a href={BLOG_CONFIG.email} aria-label="Email" title="Email">
+            <Fragment set:html={getSizedIcon("Email", 18)} />
+            <span>Email</span>
+          </a>
+        )
+      }
+    </div>
+  </section>
+
+  {
+    projectsByCategory.length > 0 && (
+      <section class="projects">
+        <h3>Projects</h3>
+        {projectsByCategory.map(cat => (
+          <div class="project-category">
+            <h4>{cat.label}</h4>
+            <ul class="blog-posts">
+              {cat.entries.map(post => (
+                <li>
+                  <span>
+                    <i>
+                      <FormattedDate date={post.data.pubDate} />
+                    </i>
+                  </span>
+                  <a
+                    href={generateURL(
+                      `/${post.collection}/${post.id}/`,
+                      undefined,
+                      true
+                    )}
+                  >
+                    {post.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
+    )
+  }
 </Layout>
+
+<style>
+  .hero h2 {
+    font-size: 1.8em;
+    margin-bottom: 0.25rem;
+  }
+
+  .tagline {
+    color: var(--text-color);
+    font-style: italic;
+    margin: 0.25rem 0 1rem;
+  }
+
+  .bio {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hero-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9em;
+  }
+
+  .hero-links a:hover {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  .projects {
+    padding: 1rem 0;
+  }
+
+  .projects h3 {
+    font-size: 1.3em;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-category h4 {
+    font-size: 1em;
+    font-weight: 600;
+    margin: 1rem 0 0.25rem;
+    color: var(--text-color);
+  }
+</style>

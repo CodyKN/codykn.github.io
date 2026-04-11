@@ -1,5 +1,5 @@
 export const SITE_TITLE = "CodyKN";
-export const SITE_DESCRIPTION = "Cody Nguyen's Personal Blog";
+export const SITE_DESCRIPTION = "";
 export const COPYRIGHT =
   "© " + new Date().getFullYear() + " CodyKN All Rights Reserved";
 export const ICP_NUMBER = "";
