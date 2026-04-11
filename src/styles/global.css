@@ -6,7 +6,7 @@
 
 :root {
   --width: 720px;
-  --min-height: 100vh;
+  --min-height: 100dvh;
   --font-main: Verdana, sans-serif;
   --font-secondary: Verdana, sans-serif;
   --font-scale: 1em;
@@ -28,6 +28,7 @@ body {
   font-size: var(--font-scale);
   margin: auto;
   padding: 20px;
+  box-sizing: border-box;
   max-width: var(--width);
   text-align: left;
   word-wrap: break-word;
@@ -37,6 +38,12 @@ body {
   min-height: var(--min-height);
   background: var(--background-color);
   transition: color 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 h1,
