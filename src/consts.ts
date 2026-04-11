@@ -1,6 +1,7 @@
 export const SITE_TITLE = "CodyKN";
 export const SITE_DESCRIPTION = "Cody Nguyen's Personal Blog";
-export const COPYRIGHT = "© "+ (new Date()).getFullYear() + " CodyKN All Rights Reserved";
+export const COPYRIGHT =
+  "© " + new Date().getFullYear() + " CodyKN All Rights Reserved";
 export const ICP_NUMBER = "";
 
 export const SOCIAL_LINKS = {
@@ -19,13 +20,17 @@ export const SEO_CONFIG = {
 
 export const NAV_ITEMS = [
   { text: "Home", link: "/" },
-  { text: "Projects", link: "/projects" },
+  { text: "Business", link: "/business" },
+  { text: "Finance", link: "/finance" },
+  { text: "ML", link: "/ml" },
+  { text: "Medical", link: "/medical" },
+  { text: "Robotics", link: "/robotics" },
 ];
 
 export const BLOG_CONFIG = {
   locale: "en-us",
   profile: "https://github.com/codykn",
-  authorName: "Cody Nguyen", // 作者名称
+  authorName: "Cody Nguyen",
   email: "mailto:github.sculptor693@passmail.net",
   tags: {
     title: "Tags",

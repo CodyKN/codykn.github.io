@@ -1,0 +1,30 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
+import Tags from "../../components/Tags.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("ml");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: entry,
+  }));
+}
+
+type Props = CollectionEntry<"ml">;
+
+const entry = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title}>
+  <article>
+    <div class="meta">
+      <FormattedDate date={entry.data.pubDate} />
+      <Tags tags={entry.data.tags} />
+    </div>
+    <h1>{entry.data.title}</h1>
+    <Content />
+  </article>
+</Layout>

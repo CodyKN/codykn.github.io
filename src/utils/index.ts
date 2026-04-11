@@ -60,3 +60,25 @@ export const getPostsByTag = (
     post => !post.data.hide && post.data.tags.includes(decodeTag(tag))
   );
 };
+
+export const getGroup = (id: string): string | null => {
+  const parts = id.split("/");
+  return parts.length > 1 ? parts[0] : null;
+};
+
+export const formatGroupName = (dir: string): string => {
+  return dir
+    .split("-")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
+export const groupPosts = <T extends { id: string }>(posts: T[]) => {
+  const grouped = new Map<string | null, T[]>();
+  for (const post of posts) {
+    const group = getGroup(post.id);
+    if (!grouped.has(group)) grouped.set(group, []);
+    grouped.get(group)!.push(post);
+  }
+  return grouped;
+};
