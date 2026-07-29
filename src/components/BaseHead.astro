@@ -25,7 +25,6 @@ const {
 
 const faviconURL = generateURL("/favicon.svg");
 const ogImageURL = image.startsWith("http") ? image : generateURL(image);
-const toggleThemeURL = generateURL("/toggle-theme.js");
 ---
 
 <!-- Global Metadata -->
@@ -34,9 +33,10 @@ const toggleThemeURL = generateURL("/toggle-theme.js");
 <link rel="icon" type="image/svg+xml" href={faviconURL} />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
-<!-- <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin /> -->
-<!-- <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin /> -->
+<!-- Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -71,4 +71,4 @@ const toggleThemeURL = generateURL("/toggle-theme.js");
 }
 
 <ClientRouter />
-<script is:inline src={toggleThemeURL.toString()} async></script>
+</script>

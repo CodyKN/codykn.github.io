@@ -23,21 +23,8 @@ const onclick = back
   aria-label={label}
   target={target}
   onclick={onclick}
+  class="text-gray no-underline flex hover:text-secondary transition-colors"
 >
   <Fragment set:html={svg} />
-  {extra && <span>{extra}</span>}
+  {extra && <span class="h-6 leading-6">{extra}</span>}
 </a>
-
-<style>
-  a {
-    color: var(--text-color);
-    display: flex;
-  }
-  a:hover {
-    color: var(--link-color);
-  }
-  a > span {
-    height: 24px;
-    line-height: 24px;
-  }
-</style>

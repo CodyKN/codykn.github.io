@@ -35,12 +35,12 @@ const projectsByCategory = collections
 ---
 
 <Layout>
-  <section class="hero">
-    <p class="bio">
+  <section>
+    <p class="text-lg leading-relaxed max-w-prose">
       I like working on problems that sit between fields — software, medicine,
       robotics, finance. Mostly building things and figuring out what's useful.
     </p>
-    <div class="hero-links">
+    <div class="flex flex-wrap gap-4 mt-4">
       {
         Object.entries(SOCIAL_LINKS).map(([key, value]) => {
           if (!value) return null;
@@ -51,6 +51,7 @@ const projectsByCategory = collections
               target="_blank"
               aria-label={key}
               title={key}
+              class="inline-flex items-center gap-1.5 text-gray text-sm no-underline hover:text-secondary transition-colors"
             >
               <Fragment
                 set:html={getSizedIcon(key as keyof typeof icons, 18) ?? ""}
@@ -62,7 +63,12 @@ const projectsByCategory = collections
       }
       {
         BLOG_CONFIG.email && (
-          <a href={BLOG_CONFIG.email} aria-label="Email" title="Email">
+          <a
+            href={BLOG_CONFIG.email}
+            aria-label="Email"
+            title="Email"
+            class="inline-flex items-center gap-1.5 text-gray text-sm no-underline hover:text-secondary transition-colors"
+          >
             <Fragment set:html={getSizedIcon("Email", 18)} />
             <span>Email</span>
           </a>
@@ -73,11 +79,11 @@ const projectsByCategory = collections
 
   {
     projectsByCategory.length > 0 && (
-      <section class="projects">
+      <section>
         <h3>Projects</h3>
         {projectsByCategory.map(cat => (
-          <div class="project-category">
-            <h4>{cat.label}</h4>
+          <div class="mb-6">
+            <h4 class="text-base font-semibold text-gray mb-2">{cat.label}</h4>
             <ul class="blog-posts">
               {cat.entries.map(post => (
                 <li>
@@ -104,56 +110,3 @@ const projectsByCategory = collections
     )
   }
 </Layout>
-
-<style>
-  .hero h2 {
-    font-size: 1.8em;
-    margin-bottom: 0.25rem;
-  }
-
-  .tagline {
-    color: var(--text-color);
-    font-style: italic;
-    margin: 0.25rem 0 1rem;
-  }
-
-  .bio {
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .hero-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 0.9em;
-  }
-
-  .hero-links a:hover {
-    color: var(--link-color);
-    text-decoration: none;
-  }
-
-  .projects {
-    padding: 1rem 0;
-  }
-
-  .projects h3 {
-    font-size: 1.3em;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-category h4 {
-    font-size: 1em;
-    font-weight: 600;
-    margin: 1rem 0 0.25rem;
-    color: var(--text-color);
-  }
-</style>

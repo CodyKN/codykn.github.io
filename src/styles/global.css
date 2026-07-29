@@ -1,200 +1,211 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --width: 720px;
-  --min-height: 100dvh;
-  --font-main: Verdana, sans-serif;
-  --font-secondary: Verdana, sans-serif;
-  --font-scale: 1em;
-  --background-color: #fffcf5;
-  --heading-color: #222;
-  --text-color: #444;
-  --link-color: #0062ff;
-  --visited-color: #8b6fcb;
-  --code-background-color: #eee;
-  --code-color: #222;
-  --blockquote-color: #222;
-  --sun-color: #f5e0a2;
-  --moon-color: #424f56;
-  --code-border-color: #ddd;
-}
+@layer base {
+  html:not(h1, h2, h3, h4, h5, h6) {
+    font-family: Poppins, system-ui, sans-serif;
+  }
 
-body {
-  font-family: var(--font-secondary);
-  font-size: var(--font-scale);
-  margin: auto;
-  padding: 20px;
-  box-sizing: border-box;
-  max-width: var(--width);
-  text-align: left;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  line-height: 1.5;
-  color: var(--text-color);
-  min-height: var(--min-height);
-  background: var(--background-color);
-  transition: color 0.5s ease;
-  display: flex;
-  flex-direction: column;
-}
+  main {
+    min-height: 85dvh;
+  }
 
-main {
-  flex: 1;
-}
+  header,
+  footer,
+  main,
+  section,
+  article {
+    container-type: inline-size;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-main);
-  color: var(--heading-color);
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-raleway font-light leading-tight mb-4 text-balance text-primary;
+  }
 
-a {
-  color: var(--link-color);
-  cursor: pointer;
-  text-decoration: none;
-}
+  h1 {
+    @apply text-4xl lg:text-6xl;
+  }
 
-.prose a {
-  text-decoration: underline;
-  text-decoration-style: dashed;
-  text-underline-offset: 4px;
-}
+  h2 {
+    @apply text-3xl lg:text-5xl;
+  }
 
-a:hover {
-  text-decoration: underline;
-}
+  h3 {
+    @apply font-normal text-2xl lg:text-2xl;
+  }
 
-nav a {
-  margin-right: 12px;
-}
+  h4 {
+    @apply font-normal text-xl lg:text-2xl;
+  }
 
-nav a.active {
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
+  h5 {
+    @apply font-normal text-lg lg:text-xl;
+  }
 
-strong,
-b {
-  color: var(--heading-color);
-}
+  h6 {
+    @apply font-normal text-base lg:text-lg;
+  }
 
-button {
-  margin: 0;
-  cursor: pointer;
-}
+  small {
+    @apply font-raleway leading-tight text-xs mb-2;
+  }
 
-time {
-  font-family: monospace;
-  font-style: normal;
-  font-size: 15px;
-}
+  p {
+    @apply leading-relaxed mb-2 text-gray;
+  }
 
-main {
-  line-height: 1.6;
-}
+  p,
+  li,
+  figcaption {
+    max-width: 65ch;
+    text-wrap: pretty;
+  }
 
-table {
-  width: 100%;
-}
+  blockquote {
+    @apply italic leading-relaxed text-lg lg:text-xl border-l-2 border-secondary pl-5;
+  }
 
-hr {
-  border: 0;
-  border-top: 1px dashed;
-}
+  caption {
+    @apply font-light leading-tight text-sm;
+  }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+  section {
+    @apply my-12 lg:my-16;
+  }
 
-blockquote {
-  border-left: 1px solid #999;
-  color: var(--code-color);
-  padding-left: 20px;
-  font-style: italic;
-}
+  a {
+    @apply text-secondary cursor-pointer no-underline;
+  }
 
-footer {
-  padding: 25px 0;
-  text-align: center;
-}
+  a:hover {
+    @apply text-primary underline;
+  }
 
-.title:hover {
-  text-decoration: none;
-}
+  .prose a {
+    @apply underline decoration-dashed underline-offset-4;
+  }
 
-.title h1 {
-  font-size: 1.5em;
-}
+  strong,
+  b {
+    @apply text-primary;
+  }
 
-.inline {
-  width: auto !important;
-}
+  button {
+    @apply m-0 cursor-pointer;
+  }
 
-:not(.astro-code) > code {
-  font-family: monospace;
-  padding: 2px;
-  background-color: var(--code-background-color);
-  color: var(--code-color);
-  border-radius: 3px;
-}
+  time {
+    @apply font-mono text-sm text-gray;
+  }
 
-/* 不在 .astro-code 下的 highlight 和 code */
-.highlight,
-.code {
-  padding: 1px 15px;
-  background-color: var(--code-background-color);
-  color: var(--code-color);
-  border-radius: 3px;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  overflow-x: auto;
-}
+  table {
+    @apply w-full;
+  }
 
-/* blog post list */
-ul.blog-posts {
-  list-style-type: none;
-  padding: unset;
-}
+  hr {
+    @apply border-0 border-t border-dashed border-primary/20;
+  }
 
-ul.blog-posts li {
-  display: flex;
-}
+  img {
+    @apply max-w-full h-auto block;
+  }
 
-ul.blog-posts li span {
-  flex: 0 0 130px;
-}
+  pre {
+    @apply p-8 my-4;
+  }
 
-ul.blog-posts li a:visited {
-  color: var(--visited-color);
-}
+  pre.astro-code {
+    @apply border border-primary/10 rounded-md p-3;
+  }
 
-#theme-btn {
-  color: var(--moon-color);
-  cursor: pointer;
-}
+  :not(.astro-code) > code {
+    @apply font-mono px-1 py-0.5 bg-elevated text-primary rounded;
+  }
 
-.theme-icon {
-  transition: transform 0.5s ease;
-}
-.theme-icon:hover {
-  transform: rotate(-0.1turn);
-  color: var(--link-color);
-}
+  .highlight,
+  .code {
+    @apply px-4 py-0.5 bg-elevated text-primary rounded overflow-x-auto;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+  }
 
-pre.astro-code {
-  border: 1px solid var(--code-border-color);
-  border-radius: 6px;
-  padding: 12px;
+  .link {
+    @apply hover:text-secondary focus-within:text-secondary;
+  }
+
+  .fancy {
+    @apply text-secondary;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white font-semibold border border-primary w-fit py-2.5 px-7 transition-colors hover:bg-secondary hover:border-secondary;
+  }
+
+  .btn-flat-white {
+    @apply bg-white text-primary font-semibold border border-white py-2.5 px-7 w-fit transition-colors hover:bg-elevated;
+  }
+
+  .listCard {
+    @apply hover:border-secondary focus-visible:border-secondary focus:outline-none h-full bg-white border border-primary/30;
+  }
+
+  .card {
+    @apply bg-elevated relative p-4 border border-primary/20 border-t-2 border-t-primary hover:border-t-secondary transition-colors w-full flex flex-col justify-start;
+  }
+
+  select,
+  input,
+  textarea {
+    @apply hover:border-secondary focus-visible:border-secondary focus:outline-none py-2 px-3 h-full bg-white border border-primary/30;
+  }
+
+  footer {
+    @apply py-6 text-center;
+  }
+
+  /* Blog post list */
+  ul.blog-posts {
+    @apply list-none p-0;
+  }
+
+  ul.blog-posts li {
+    @apply flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  /* Blog tags */
+  ul.blog-tags {
+    @apply list-none p-0;
+  }
+
+  ul.blog-tags li {
+    @apply inline-block mr-3 mb-3;
+  }
+
+  ul.blog-tags li a {
+    @apply text-secondary underline decoration-dashed underline-offset-4;
+  }
+
+  ul.blog-tags li a:hover {
+    @apply text-primary underline;
+  }
+
+  /* Article content */
+  article h1,
+  article h2,
+  article h3,
+  article h4,
+  article h5,
+  article h6 {
+    @apply mt-8;
+  }
 }

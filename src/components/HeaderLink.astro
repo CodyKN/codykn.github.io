@@ -13,6 +13,14 @@ const isActive =
   pathEqual(hrefPath || "", subpath?.[0] || "");
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a
+  href={href}
+  class:list={[
+    "text-sm font-medium text-gray no-underline hover:text-secondary transition-colors",
+    { "text-primary border-b-2 border-primary": isActive },
+    className,
+  ]}
+  {...props}
+>
   <slot />
 </a>

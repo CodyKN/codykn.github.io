@@ -6,31 +6,21 @@ import { generateURL } from "../utils";
 import { NAV_ITEMS, BLOG_CONFIG } from "../consts";
 ---
 
-<header>
-  <a class="title" href={generateURL("/", Astro.url)}>
-    <h1>{SITE_TITLE}</h1>
-  </a>
-  <nav>
-    <p>
-      {
-        NAV_ITEMS.map(item => (
-          <HeaderLink href={generateURL(item.link)} aria-label={item.text}>
-            {item.text}
-          </HeaderLink>
-        ))
-      }
-    </p>
-  </nav>
+<header class="border-b border-primary/10 py-4 mb-4">
+  <div class="max-w-screen-xl mx-auto px-5">
+    <div class="flex items-center justify-between">
+      <a class="no-underline hover:no-underline" href={generateURL("/", Astro.url)}>
+        <span class="text-xl font-raleway font-semibold text-primary">{SITE_TITLE}</span>
+      </a>
+      <nav class="flex gap-4">
+        {
+          NAV_ITEMS.map(item => (
+            <HeaderLink href={generateURL(item.link)} aria-label={item.text}>
+              {item.text}
+            </HeaderLink>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
 </header>
-
-<style>
-  nav {
-    position: relative;
-  }
-  nav div {
-    position: absolute;
-    display: flex;
-    right: 0;
-    top: 0;
-  }
-</style>
