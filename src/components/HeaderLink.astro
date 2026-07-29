@@ -16,8 +16,8 @@ const isActive =
 <a
   href={href}
   class:list={[
-    "text-sm font-medium text-gray no-underline hover:text-secondary transition-colors",
-    { "text-primary border-b-2 border-primary": isActive },
+    "text-sm font-medium no-underline border-b-2 border-transparent transition-colors",
+    isActive ? "text-primary border-primary" : "text-gray hover:text-secondary",
     className,
   ]}
   {...props}
