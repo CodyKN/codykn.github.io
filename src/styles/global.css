@@ -7,10 +7,6 @@
     font-family: Poppins, system-ui, sans-serif;
   }
 
-  main {
-    min-height: 85dvh;
-  }
-
   header,
   footer,
   main,
