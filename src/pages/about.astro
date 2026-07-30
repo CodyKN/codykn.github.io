@@ -4,7 +4,10 @@ import { SOCIAL_LINKS, BLOG_CONFIG } from "../consts";
 import icons, { getSizedIcon } from "../assets/icons";
 ---
 
-<Layout title="About — Cody Nguyen" description="About Cody Nguyen — background, interests, and contact.">
+<Layout
+  title="About — Cody Nguyen"
+  description="About Cody Nguyen — background, interests, and contact."
+>
   <section>
     <h1>About</h1>
     <div class="prose max-w-prose">
@@ -19,9 +22,9 @@ import icons, { getSizedIcon } from "../assets/icons";
         spending as much time understanding the domain as writing the code.
       </p>
       <p>
-        When I'm not writing code, you'll find me reading about whatever
-        rabbit hole I've fallen into, tinkering with hardware projects, or
-        trying to explain something I just learned to someone who didn't ask.
+        When I'm not writing code, you'll find me reading about whatever rabbit
+        hole I've fallen into, tinkering with hardware projects, or trying to
+        explain something I just learned to someone who didn't ask.
       </p>
     </div>
   </section>
@@ -65,19 +68,6 @@ import icons, { getSizedIcon } from "../assets/icons";
             </a>
           );
         })
-      }
-      {
-        BLOG_CONFIG.email && (
-          <a
-            href={BLOG_CONFIG.email}
-            aria-label="Email"
-            title="Email"
-            class="inline-flex items-center gap-2 text-secondary text-sm no-underline hover:text-primary transition-colors"
-          >
-            <Fragment set:html={getSizedIcon("Email", 18)} />
-            <span>Email</span>
-          </a>
-        )
       }
     </div>
   </section>
