@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
   html:not(h1, h2, h3, h4, h5, h6) {
     font-family: Poppins, system-ui, sans-serif;
   }
