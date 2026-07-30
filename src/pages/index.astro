@@ -12,51 +12,80 @@ const posts = (await getCollection("medical")).sort(
 ---
 
 <Layout>
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Cody Nguyen</h1>
-    <p class="text-lg leading-relaxed max-w-prose">
-      {SITE_DESCRIPTION}
-    </p>
-    <p class="leading-relaxed max-w-prose">
-      I like working on problems that sit between fields — finding where
-      software can unlock something useful in medicine, robotics, ML, or
-      finance.
-    </p>
-    <div class="flex flex-wrap gap-4 mt-4">
-      {
-        Object.entries(SOCIAL_LINKS).map(([key, value]) => {
-          if (!value) return null;
-          return (
+  <!-- Splash -->
+  <section class="flex items-center gap-8">
+    <div>
+      <h1>
+        <span class="fancy">Cody Nguyen,</span> building at the intersection of
+        fields.
+      </h1>
+      <p>
+        I like working on problems that sit between fields — finding where
+        software can unlock something useful in medicine, robotics, ML, or
+        finance.
+      </p>
+      <div class="flex flex-wrap gap-4 mt-4">
+        {
+          Object.entries(SOCIAL_LINKS).map(([key, value]) => {
+            if (!value) return null;
+            return (
+              <a
+                href={value}
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label={key}
+                title={key}
+                class="inline-flex items-center gap-1.5 text-gray text-sm no-underline hover:text-secondary transition-colors"
+              >
+                <Fragment
+                  set:html={getSizedIcon(key as keyof typeof icons, 18) ?? ""}
+                />
+                <span>{key}</span>
+              </a>
+            );
+          })
+        }
+        {
+          BLOG_CONFIG.email && (
             <a
-              href={value}
-              rel="noopener noreferrer"
-              target="_blank"
-              aria-label={key}
-              title={key}
+              href={BLOG_CONFIG.email}
+              aria-label="Email"
+              title="Email"
               class="inline-flex items-center gap-1.5 text-gray text-sm no-underline hover:text-secondary transition-colors"
             >
-              <Fragment
-                set:html={getSizedIcon(key as keyof typeof icons, 18) ?? ""}
-              />
-              <span>{key}</span>
+              <Fragment set:html={getSizedIcon("Email", 18)} />
+              <span>Email</span>
             </a>
-          );
-        })
-      }
-      {
-        BLOG_CONFIG.email && (
-          <a
-            href={BLOG_CONFIG.email}
-            aria-label="Email"
-            title="Email"
-            class="inline-flex items-center gap-1.5 text-gray text-sm no-underline hover:text-secondary transition-colors"
-          >
-            <Fragment set:html={getSizedIcon("Email", 18)} />
-            <span>Email</span>
-          </a>
-        )
-      }
+          )
+        }
+      </div>
+    </div>
+    <div class="relative hidden md:block w-full max-w-md shrink-0">
+      <div
+        class="absolute -top-4 -right-4 w-full h-full bg-elevated border border-primary/20"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="relative bg-white border border-primary/20">
+        <div
+          class="flex items-center gap-1.5 border-b border-primary/10 px-4 py-3"
+        >
+          <span class="w-2.5 h-2.5 rounded-full bg-primary/60"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-primary/35"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-primary/15"></span>
+          <span class="ml-3 flex-1 h-4 bg-elevated"></span>
+        </div>
+        <div class="p-5 flex flex-col gap-3">
+          <div class="h-3 w-2/3 bg-primary/20"></div>
+          <div class="h-3 w-1/2 bg-primary/10"></div>
+          <div class="h-24 w-full bg-secondary/20 mt-2"></div>
+          <div class="flex gap-3 mt-2">
+            <div class="h-16 flex-1 bg-elevated border border-primary/10"></div>
+            <div class="h-16 flex-1 bg-elevated border border-primary/10"></div>
+            <div class="h-16 flex-1 bg-elevated border border-primary/10"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -115,9 +144,6 @@ const posts = (await getCollection("medical")).sort(
 </Layout>
 
 <style>
-  .hero h1 {
-    margin-bottom: 0.5rem;
-  }
   .domain-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
