@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FormattedDate from "../components/FormattedDate.astro";
-import { SITE_DESCRIPTION, SOCIAL_LINKS, BLOG_CONFIG } from "../consts";
+import { SITE_DESCRIPTION, SOCIAL_LINKS, BLOG_CONFIG, DOMAINS } from "../consts";
 import icons, { getSizedIcon } from "../assets/icons";
 import { getCollection } from "astro:content";
 import { generateURL } from "../utils";
+import FormattedDate from "../components/FormattedDate.astro";
 
 const posts = (await getCollection("medical")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -12,10 +12,16 @@ const posts = (await getCollection("medical")).sort(
 ---
 
 <Layout>
-  <section>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Cody Nguyen</h1>
     <p class="text-lg leading-relaxed max-w-prose">
-      I like working on problems that sit between fields — software, medicine,
-      robotics, finance. Mostly building things and figuring out what's useful.
+      {SITE_DESCRIPTION}
+    </p>
+    <p class="leading-relaxed max-w-prose">
+      I like working on problems that sit between fields — finding where
+      software can unlock something useful in medicine, robotics, ML, or
+      finance.
     </p>
     <div class="flex flex-wrap gap-4 mt-4">
       {
@@ -54,12 +60,41 @@ const posts = (await getCollection("medical")).sort(
     </div>
   </section>
 
+  <!-- Domains -->
+  <section>
+    <h2>What I Work On</h2>
+    <div class="domain-grid">
+      {
+        DOMAINS.map(domain => (
+          <a
+            href={generateURL(`/projects#${domain.slug}`)}
+            class="card group no-underline hover:no-underline"
+          >
+            <h4 class="mb-2 group-hover:text-secondary transition-colors">
+              {domain.name}
+            </h4>
+            <p class="text-sm mb-0">{domain.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Recent Work -->
   {
     posts.length > 0 && (
       <section>
-        <h3>Projects</h3>
+        <div class="flex items-baseline justify-between mb-4">
+          <h2 class="mb-0">Recent Projects</h2>
+          <a
+            href={generateURL("/projects")}
+            class="text-sm text-secondary no-underline hover:underline"
+          >
+            View all &rarr;
+          </a>
+        </div>
         <ul class="blog-posts">
-          {posts.map(post => (
+          {posts.slice(0, 5).map(post => (
             <li>
               <span>
                 <i>
@@ -67,11 +102,7 @@ const posts = (await getCollection("medical")).sort(
                 </i>
               </span>
               <a
-                href={generateURL(
-                  `/medical/${post.id}/`,
-                  undefined,
-                  true
-                )}
+                href={generateURL(`/medical/${post.id}/`, undefined, true)}
               >
                 {post.data.title}
               </a>
@@ -82,3 +113,14 @@ const posts = (await getCollection("medical")).sort(
     )
   }
 </Layout>
+
+<style>
+  .hero h1 {
+    margin-bottom: 0.5rem;
+  }
+  .domain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+</style>

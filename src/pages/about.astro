@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SOCIAL_LINKS, BLOG_CONFIG } from "../consts";
+import icons, { getSizedIcon } from "../assets/icons";
+---
+
+<Layout title="About — Cody Nguyen" description="About Cody Nguyen — background, interests, and contact.">
+  <section>
+    <h1>About</h1>
+    <div class="prose max-w-prose">
+      <p>
+        I'm Cody — a software engineer interested in problems that span
+        disciplines. Most of my work sits at the boundary between software and
+        another field: medicine, robotics, machine learning, or finance.
+      </p>
+      <p>
+        I care about building things that are genuinely useful — tools that
+        solve real problems rather than impressive demos. That usually means
+        spending as much time understanding the domain as writing the code.
+      </p>
+      <p>
+        When I'm not writing code, you'll find me reading about whatever
+        rabbit hole I've fallen into, tinkering with hardware projects, or
+        trying to explain something I just learned to someone who didn't ask.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Interests</h2>
+    <div class="interests-grid">
+      <div>
+        <h5>Medicine &amp; Health Tech</h5>
+        <p class="text-sm">
+          Clinical decision support, medical education tools, health data
+          platforms.
+        </p>
+      </div>
+      <div>
+        <h5>Machine Learning</h5>
+        <p class="text-sm">
+          Applied ML — prediction models, NLP, and data pipelines that solve
+          specific problems.
+        </p>
+      </div>
+      <div>
+        <h5>Robotics</h5>
+        <p class="text-sm">
+          Embedded systems, control software, and bridging the gap between
+          hardware and software.
+        </p>
+      </div>
+      <div>
+        <h5>Finance</h5>
+        <p class="text-sm">
+          Quantitative analysis, algorithmic strategies, and financial
+          modeling tools.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Get in Touch</h2>
+    <p>
+      Want to collaborate or just say hello? Reach out through any of the
+      channels below.
+    </p>
+    <div class="flex flex-wrap gap-4 mt-4">
+      {
+        Object.entries(SOCIAL_LINKS).map(([key, value]) => {
+          if (!value) return null;
+          return (
+            <a
+              href={value}
+              rel="noopener noreferrer"
+              target="_blank"
+              aria-label={key}
+              title={key}
+              class="inline-flex items-center gap-2 text-secondary text-sm no-underline hover:text-primary transition-colors"
+            >
+              <Fragment
+                set:html={getSizedIcon(key as keyof typeof icons, 18) ?? ""}
+              />
+              <span>{key}</span>
+            </a>
+          );
+        })
+      }
+      {
+        BLOG_CONFIG.email && (
+          <a
+            href={BLOG_CONFIG.email}
+            aria-label="Email"
+            title="Email"
+            class="inline-flex items-center gap-2 text-secondary text-sm no-underline hover:text-primary transition-colors"
+          >
+            <Fragment set:html={getSizedIcon("Email", 18)} />
+            <span>Email</span>
+          </a>
+        )
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+</style>

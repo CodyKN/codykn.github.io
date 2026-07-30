@@ -1,26 +1,25 @@
-export const SITE_TITLE = "CodyKN";
-export const SITE_DESCRIPTION = "";
+export const SITE_TITLE = "Cody Nguyen";
+export const SITE_DESCRIPTION =
+  "Software engineer building at the intersection of medicine, robotics, ML, and finance.";
 export const COPYRIGHT =
-  "© " + new Date().getFullYear() + " CodyKN All Rights Reserved";
+  "© " + new Date().getFullYear() + " Cody Nguyen. All rights reserved.";
 export const ICP_NUMBER = "";
 
 export const SOCIAL_LINKS = {
   Github: "https://github.com/codykn",
-  // Twitter: "https://twitter.com/yourusername",
-  // LinkedIn: "https://www.linkedin.com/in/yourusername",
-  // Instagram: "https://www.instagram.com/yourusername",
-  // Facebook: "https://www.facebook.com/yourusername",
-  // YouTube: "https://www.youtube.com/yourusername",
+  LinkedIn: "https://www.linkedin.com/in/codykn",
 };
 
 export const SEO_CONFIG = {
   ogImage: "/hero-img.png",
-  keywords: "blog, tech, programming",
+  keywords:
+    "Cody Nguyen, software engineer, medicine, robotics, machine learning, finance",
 };
 
 export const NAV_ITEMS = [
   { text: "Home", link: "/" },
-  { text: "Medical", link: "/medical" },
+  { text: "Projects", link: "/projects" },
+  { text: "About", link: "/about" },
 ];
 
 export const BLOG_CONFIG = {
@@ -33,3 +32,13 @@ export const BLOG_CONFIG = {
     description: "All the tags used in posts.",
   },
 };
+
+export const DOMAINS = [
+  {
+    name: "Medicine",
+    slug: "medical",
+    description:
+      "Health-tech tools and platforms — from study aids to clinical decision support.",
+    icon: "medical",
+  },
+] as const;

@@ -4,8 +4,8 @@
     {
       "name": "dev",
       "runtimeExecutable": "cmd",
-      "runtimeArgs": ["/c", "set PATH=C:\\Program Files\\nodejs;%PATH%&& npx astro dev"],
-      "port": 4321,
+      "runtimeArgs": ["/c", "set PATH=C:\\Program Files\\nodejs;%PATH%&& npx astro dev --port 4350"],
+      "port": 4350,
       "autoPort": true
     }
   ]
