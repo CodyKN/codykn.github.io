@@ -11,9 +11,6 @@ const posts = (await getCollection("medical")).sort(
 
 const projectsByDomain: Record<string, typeof posts> = {
   medical: posts,
-  ml: [],
-  robotics: [],
-  finance: [],
 };
 ---
 
