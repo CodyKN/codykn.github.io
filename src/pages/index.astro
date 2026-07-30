@@ -6,32 +6,9 @@ import icons, { getSizedIcon } from "../assets/icons";
 import { getCollection } from "astro:content";
 import { generateURL } from "../utils";
 
-const collections = [
-  "business",
-  "finance",
-  "ml",
-  "medical",
-  "robotics",
-] as const;
-
-const allProjects = (
-  await Promise.all(
-    collections.map(async name => {
-      const entries = await getCollection(name);
-      return entries.map(entry => ({ ...entry, collection: name }));
-    })
-  )
-).flat();
-
-const projectsByCategory = collections
-  .map(name => ({
-    name,
-    label: name.charAt(0).toUpperCase() + name.slice(1),
-    entries: allProjects
-      .filter(p => p.collection === name)
-      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
-  }))
-  .filter(cat => cat.entries.length > 0);
+const posts = (await getCollection("medical")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <Layout>
@@ -78,34 +55,29 @@ const projectsByCategory = collections
   </section>
 
   {
-    projectsByCategory.length > 0 && (
+    posts.length > 0 && (
       <section>
         <h3>Projects</h3>
-        {projectsByCategory.map(cat => (
-          <div class="mb-6">
-            <h4 class="text-base font-semibold text-gray mb-2">{cat.label}</h4>
-            <ul class="blog-posts">
-              {cat.entries.map(post => (
-                <li>
-                  <span>
-                    <i>
-                      <FormattedDate date={post.data.pubDate} />
-                    </i>
-                  </span>
-                  <a
-                    href={generateURL(
-                      `/${post.collection}/${post.id}/`,
-                      undefined,
-                      true
-                    )}
-                  >
-                    {post.data.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <ul class="blog-posts">
+          {posts.map(post => (
+            <li>
+              <span>
+                <i>
+                  <FormattedDate date={post.data.pubDate} />
+                </i>
+              </span>
+              <a
+                href={generateURL(
+                  `/medical/${post.id}/`,
+                  undefined,
+                  true
+                )}
+              >
+                {post.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
     )
   }

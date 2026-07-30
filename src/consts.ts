@@ -20,11 +20,7 @@ export const SEO_CONFIG = {
 
 export const NAV_ITEMS = [
   { text: "Home", link: "/" },
-  { text: "Business", link: "/business" },
-  { text: "Finance", link: "/finance" },
-  { text: "ML", link: "/ml" },
   { text: "Medical", link: "/medical" },
-  { text: "Robotics", link: "/robotics" },
 ];
 
 export const BLOG_CONFIG = {
