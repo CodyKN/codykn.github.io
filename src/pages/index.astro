@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { SITE_DESCRIPTION, SOCIAL_LINKS, BLOG_CONFIG, DOMAINS } from "../consts";
+import { SOCIAL_LINKS, DOMAINS } from "../consts";
 import icons, { getSizedIcon } from "../assets/icons";
 import { getCollection } from "astro:content";
 import { generateURL } from "../utils";
@@ -16,8 +16,7 @@ const posts = (await getCollection("medical")).sort(
   <section class="flex items-center gap-8">
     <div>
       <h1>
-        <span class="fancy">Cody Nguyen,</span> building at the intersection of
-        fields.
+        <span class="fancy">Cody Nguyen,</span> building at the intersection of fields.
       </h1>
       <p>
         I like working on problems that sit between fields — finding where
@@ -45,19 +44,6 @@ const posts = (await getCollection("medical")).sort(
             );
           })
         }
-        {
-          BLOG_CONFIG.email && (
-            <a
-              href={BLOG_CONFIG.email}
-              aria-label="Email"
-              title="Email"
-              class="inline-flex items-center gap-1.5 text-gray text-sm no-underline hover:text-secondary transition-colors"
-            >
-              <Fragment set:html={getSizedIcon("Email", 18)} />
-              <span>Email</span>
-            </a>
-          )
-        }
       </div>
     </div>
     <div class="relative hidden md:block w-full max-w-md shrink-0">
@@ -66,23 +52,43 @@ const posts = (await getCollection("medical")).sort(
         aria-hidden="true"
       >
       </div>
-      <div class="relative bg-white border border-primary/20">
-        <div
-          class="flex items-center gap-1.5 border-b border-primary/10 px-4 py-3"
-        >
-          <span class="w-2.5 h-2.5 rounded-full bg-primary/60"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-primary/35"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-primary/15"></span>
-          <span class="ml-3 flex-1 h-4 bg-elevated"></span>
+      <div
+        class="relative bg-white border border-primary/20"
+        aria-hidden="true"
+      >
+        <div class="flex gap-2 p-3 border-b border-primary/10">
+          <div class="flex-1 bg-elevated border border-primary/10 p-2">
+            <div class="h-2 w-1/2 bg-primary/15 mb-1.5"></div>
+            <div class="h-4 w-2/3 bg-primary/30"></div>
+          </div>
+          <div class="flex-1 bg-elevated border border-primary/10 p-2">
+            <div class="h-2 w-1/2 bg-primary/15 mb-1.5"></div>
+            <div class="h-4 w-2/3 bg-secondary/40"></div>
+          </div>
+          <div class="flex-1 bg-elevated border border-primary/10 p-2">
+            <div class="h-2 w-1/2 bg-primary/15 mb-1.5"></div>
+            <div class="h-4 w-2/3 bg-positive/40"></div>
+          </div>
         </div>
-        <div class="p-5 flex flex-col gap-3">
-          <div class="h-3 w-2/3 bg-primary/20"></div>
-          <div class="h-3 w-1/2 bg-primary/10"></div>
-          <div class="h-24 w-full bg-secondary/20 mt-2"></div>
-          <div class="flex gap-3 mt-2">
-            <div class="h-16 flex-1 bg-elevated border border-primary/10"></div>
-            <div class="h-16 flex-1 bg-elevated border border-primary/10"></div>
-            <div class="h-16 flex-1 bg-elevated border border-primary/10"></div>
+        <div class="p-3">
+          <div class="h-2 w-16 bg-primary/15 mb-3"></div>
+          <div class="flex items-end gap-1.5 h-24">
+            <div class="flex-1 bg-secondary/30 rounded-t-sm" style="height:45%">
+            </div>
+            <div class="flex-1 bg-secondary/40 rounded-t-sm" style="height:70%">
+            </div>
+            <div class="flex-1 bg-secondary/30 rounded-t-sm" style="height:55%">
+            </div>
+            <div class="flex-1 bg-secondary/50 rounded-t-sm" style="height:90%">
+            </div>
+            <div class="flex-1 bg-secondary/35 rounded-t-sm" style="height:60%">
+            </div>
+            <div class="flex-1 bg-secondary/45 rounded-t-sm" style="height:80%">
+            </div>
+            <div class="flex-1 bg-secondary/30 rounded-t-sm" style="height:50%">
+            </div>
+            <div class="flex-1 bg-secondary/40 rounded-t-sm" style="height:65%">
+            </div>
           </div>
         </div>
       </div>
@@ -130,9 +136,7 @@ const posts = (await getCollection("medical")).sort(
                   <FormattedDate date={post.data.pubDate} />
                 </i>
               </span>
-              <a
-                href={generateURL(`/medical/${post.id}/`, undefined, true)}
-              >
+              <a href={generateURL(`/medical/${post.id}/`, undefined, true)}>
                 {post.data.title}
               </a>
             </li>
