@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { SOCIAL_LINKS, DOMAINS } from "../consts";
+import { SOCIAL_LINKS, DOMAINS, FEATURED_PROJECTS } from "../consts";
 import icons, { getSizedIcon } from "../assets/icons";
 import { getCollection } from "astro:content";
 import { generateURL } from "../utils";
@@ -116,6 +116,41 @@ const posts = (await getCollection("medical")).sort(
   </section>
 
   <!-- Recent Work -->
+  <section>
+    <div class="flex items-baseline justify-between mb-4">
+      <h2 class="mb-0">Featured Projects</h2>
+      <a
+        href={generateURL("/projects")}
+        class="text-sm text-secondary no-underline hover:underline"
+      >
+        View all &rarr;
+      </a>
+    </div>
+    <div class="project-grid">
+      {
+        FEATURED_PROJECTS.map(project => (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card project-card group no-underline hover:no-underline"
+          >
+            <div class="flex items-center justify-between gap-4 mb-3">
+              <span class="text-xs uppercase tracking-wide text-gray">
+                {project.status}
+              </span>
+              <span aria-hidden="true">↗</span>
+            </div>
+            <h3 class="mb-2 group-hover:text-secondary transition-colors">
+              {project.title}
+            </h3>
+            <p class="text-sm mb-0">{project.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
   {
     posts.length > 0 && (
       <section>
@@ -152,5 +187,15 @@ const posts = (await getCollection("medical")).sort(
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1rem;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    min-height: 13rem;
   }
 </style>

@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import { DOMAINS } from "../../consts";
+import { DOMAINS, FEATURED_PROJECTS } from "../../consts";
 import FormattedDate from "../../components/FormattedDate.astro";
 import { generateURL } from "../../utils";
 
@@ -26,10 +26,36 @@ const projectsByDomain: Record<string, typeof posts> = {
   {
     DOMAINS.map(domain => {
       const items = projectsByDomain[domain.slug] || [];
+      const featured = FEATURED_PROJECTS.filter(
+        project => project.domain === domain.slug
+      );
       return (
         <section id={domain.slug}>
           <h2>{domain.name}</h2>
           <p class="text-sm mb-4">{domain.description}</p>
+          {featured.length > 0 && (
+            <div class="project-grid">
+              {featured.map(project => (
+                <a
+                  class="card project-card group no-underline hover:no-underline"
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="flex items-center justify-between gap-4 mb-3">
+                    <span class="text-xs uppercase tracking-wide text-gray">
+                      {project.status}
+                    </span>
+                    <span aria-hidden="true">↗</span>
+                  </div>
+                  <h3 class="mb-2 group-hover:text-secondary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p class="text-sm mb-0">{project.description}</p>
+                </a>
+              ))}
+            </div>
+          )}
           {items.length > 0 ? (
             <ul class="blog-posts">
               {items.map(post => (
@@ -51,13 +77,25 @@ const projectsByDomain: Record<string, typeof posts> = {
                 </li>
               ))}
             </ul>
-          ) : (
+          ) : featured.length === 0 ? (
             <p class="text-sm italic text-gray/60">
               Projects coming soon.
             </p>
-          )}
+          ) : null}
         </section>
       );
     })
   }
 </Layout>
+
+<style>
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    min-height: 13rem;
+  }
+</style>

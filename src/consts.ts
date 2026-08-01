@@ -35,10 +35,36 @@ export const BLOG_CONFIG = {
 
 export const DOMAINS = [
   {
+    name: "Web Products",
+    slug: "web",
+    description:
+      "Focused web products and community platforms built from idea to launch.",
+    icon: "web",
+  },
+  {
     name: "Medicine",
     slug: "medical",
     description:
       "Health-tech tools and platforms — from study aids to clinical decision support.",
     icon: "medical",
+  },
+] as const;
+
+export const FEATURED_PROJECTS = [
+  {
+    title: "RecipePractice",
+    url: "https://recipepractice.com/",
+    domain: "web",
+    status: "In development",
+    description:
+      "A recipe notebook built for iteration—save recipes, log every cook, compare versions, and turn each attempt into a better dish.",
+  },
+  {
+    title: "Heartland Tennis League",
+    url: "https://heartlandtennis.com/",
+    domain: "web",
+    status: "Launching soon",
+    description:
+      "A community tennis platform for the Four States, with challenge ladders, match reporting, league rules, events, and player signups.",
   },
 ] as const;
