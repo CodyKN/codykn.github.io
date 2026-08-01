@@ -1,8 +1,7 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
-import Tags from "../../components/Tags.astro";
+import { generateURL } from "../../utils";
 
 export async function getStaticPaths() {
   const entries = await getCollection("medical");
@@ -18,13 +17,51 @@ const entry = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<Layout title={entry.data.title}>
-  <article>
-    <div class="meta">
-      <FormattedDate date={entry.data.pubDate} />
-      <Tags tags={entry.data.tags} />
+<Layout
+  title={`${entry.data.title} — Cody Nguyen`}
+  description={entry.data.description}
+>
+  <article class="project-detail">
+    <a class="back-link" href={generateURL("/projects")}>&larr; All projects</a>
+
+    <header>
+      <span class="status">{entry.data.status}</span>
+      <h1>{entry.data.title}</h1>
+      <p class="lede">{entry.data.description}</p>
+    </header>
+
+    <div class="project-content">
+      <Content />
     </div>
-    <h1>{entry.data.title}</h1>
-    <Content />
   </article>
 </Layout>
+
+<style>
+  .project-detail {
+    margin: 3rem 0 5rem;
+  }
+
+  .project-detail header {
+    margin: 2rem 0 4rem;
+  }
+
+  .back-link {
+    font-size: 0.875rem;
+  }
+
+  .status {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #555;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .lede {
+    max-width: 58ch;
+    margin-bottom: 2rem;
+    font-size: 1.125rem;
+  }
+
+</style>
