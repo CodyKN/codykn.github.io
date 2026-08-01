@@ -4,7 +4,7 @@ import { SOCIAL_LINKS, DOMAINS, FEATURED_PROJECTS } from "../consts";
 import icons, { getSizedIcon } from "../assets/icons";
 import { getCollection } from "astro:content";
 import { generateURL } from "../utils";
-import FormattedDate from "../components/FormattedDate.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 
 const posts = (await getCollection("medical")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -128,58 +128,28 @@ const posts = (await getCollection("medical")).sort(
     </div>
     <div class="project-grid">
       {
+        posts.map(post => (
+          <ProjectCard
+            title={post.data.title}
+            description={post.data.description}
+            status={post.data.status}
+            href={generateURL(`/medical/${post.id}/`, undefined, true)}
+          />
+        ))
+      }
+      {
         FEATURED_PROJECTS.map(project => (
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="card project-card group no-underline hover:no-underline"
-          >
-            <div class="flex items-center justify-between gap-4 mb-3">
-              <span class="text-xs uppercase tracking-wide text-gray">
-                {project.status}
-              </span>
-              <span aria-hidden="true">↗</span>
-            </div>
-            <h3 class="mb-2 group-hover:text-secondary transition-colors">
-              {project.title}
-            </h3>
-            <p class="text-sm mb-0">{project.description}</p>
-          </a>
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            status={project.status}
+            href={generateURL(project.href)}
+          />
         ))
       }
     </div>
   </section>
 
-  {
-    posts.length > 0 && (
-      <section>
-        <div class="flex items-baseline justify-between mb-4">
-          <h2 class="mb-0">Recent Projects</h2>
-          <a
-            href={generateURL("/projects")}
-            class="text-sm text-secondary no-underline hover:underline"
-          >
-            View all &rarr;
-          </a>
-        </div>
-        <ul class="blog-posts">
-          {posts.slice(0, 5).map(post => (
-            <li>
-              <span>
-                <i>
-                  <FormattedDate date={post.data.pubDate} />
-                </i>
-              </span>
-              <a href={generateURL(`/medical/${post.id}/`, undefined, true)}>
-                {post.data.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    )
-  }
 </Layout>
 
 <style>
@@ -195,7 +165,4 @@ const posts = (await getCollection("medical")).sort(
     gap: 1rem;
   }
 
-  .project-card {
-    min-height: 13rem;
-  }
 </style>

@@ -4,6 +4,8 @@ import { defineCollection, z } from "astro:content";
 const baseSchema = z.object({
   title: z.string(),
   pubDate: z.date(),
+  description: z.string(),
+  status: z.string().default("Published"),
   tags: z.array(z.string()).default(["others"]),
 });
 

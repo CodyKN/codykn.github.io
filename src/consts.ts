@@ -53,18 +53,36 @@ export const DOMAINS = [
 export const FEATURED_PROJECTS = [
   {
     title: "RecipePractice",
+    slug: "recipepractice",
+    href: "/projects/recipepractice/",
     url: "https://recipepractice.com/",
     domain: "web",
     status: "In development",
     description:
       "A recipe notebook built for iteration—save recipes, log every cook, compare versions, and turn each attempt into a better dish.",
+    overview:
+      "RecipePractice treats recipes as living documents. It gives curious cooks one place to keep the original recipe, record what happened during each cook, and carry useful lessons into the next version.",
+    highlights: [
+      "Recipe version history and cook-by-cook notes",
+      "Side-by-side comparisons for ingredients and instructions",
+      "Search, smart scaling, and deliberate sharing controls",
+    ],
   },
   {
     title: "Heartland Tennis League",
+    slug: "heartland-tennis",
+    href: "/projects/heartland-tennis/",
     url: "https://heartlandtennis.com/",
     domain: "web",
     status: "Launching soon",
     description:
       "A community tennis platform for the Four States, with challenge ladders, match reporting, league rules, events, and player signups.",
+    overview:
+      "Heartland Tennis League creates a structured way for adult players in Joplin and the surrounding region to find competitive matches outside traditional league seasons.",
+    highlights: [
+      "Challenge-based rankings with clear movement rules",
+      "Match reporting, events, and player registration",
+      "A responsive league hub designed for year-round play",
+    ],
   },
 ] as const;

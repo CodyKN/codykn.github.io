@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { DOMAINS, FEATURED_PROJECTS } from "../../consts";
-import FormattedDate from "../../components/FormattedDate.astro";
 import { generateURL } from "../../utils";
+import ProjectCard from "../../components/ProjectCard.astro";
 
 const posts = (await getCollection("medical")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -36,47 +36,26 @@ const projectsByDomain: Record<string, typeof posts> = {
           {featured.length > 0 && (
             <div class="project-grid">
               {featured.map(project => (
-                <a
-                  class="card project-card group no-underline hover:no-underline"
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div class="flex items-center justify-between gap-4 mb-3">
-                    <span class="text-xs uppercase tracking-wide text-gray">
-                      {project.status}
-                    </span>
-                    <span aria-hidden="true">↗</span>
-                  </div>
-                  <h3 class="mb-2 group-hover:text-secondary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p class="text-sm mb-0">{project.description}</p>
-                </a>
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  status={project.status}
+                  href={generateURL(project.href)}
+                />
               ))}
             </div>
           )}
           {items.length > 0 ? (
-            <ul class="blog-posts">
+            <div class="project-grid">
               {items.map(post => (
-                <li>
-                  <span>
-                    <i>
-                      <FormattedDate date={post.data.pubDate} />
-                    </i>
-                  </span>
-                  <a
-                    href={generateURL(
-                      `/medical/${post.id}/`,
-                      undefined,
-                      true
-                    )}
-                  >
-                    {post.data.title}
-                  </a>
-                </li>
+                <ProjectCard
+                  title={post.data.title}
+                  description={post.data.description}
+                  status={post.data.status}
+                  href={generateURL(`/medical/${post.id}/`, undefined, true)}
+                />
               ))}
-            </ul>
+            </div>
           ) : featured.length === 0 ? (
             <p class="text-sm italic text-gray/60">
               Projects coming soon.
@@ -95,7 +74,4 @@ const projectsByDomain: Record<string, typeof posts> = {
     gap: 1rem;
   }
 
-  .project-card {
-    min-height: 13rem;
-  }
 </style>

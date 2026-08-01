@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  status: string;
+}
+
+const { title, description, href, status } = Astro.props;
+---
+
+<a
+  class="card project-card group no-underline hover:no-underline"
+  href={href}
+>
+  <div class="flex items-center justify-between gap-4 mb-3">
+    <span class="text-xs uppercase tracking-wide text-gray">{status}</span>
+    <span aria-hidden="true">&rarr;</span>
+  </div>
+  <h3 class="mb-2 group-hover:text-secondary transition-colors">{title}</h3>
+  <p class="text-sm mb-0">{description}</p>
+</a>
+
+<style>
+  .project-card {
+    min-height: 13rem;
+  }
+</style>

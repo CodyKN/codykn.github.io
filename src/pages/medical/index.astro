@@ -1,38 +1,37 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
-import { generateURL, groupPosts, formatGroupName } from "../../utils";
+import { generateURL } from "../../utils";
+import ProjectCard from "../../components/ProjectCard.astro";
 
 const posts = (await getCollection("medical")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-const grouped = groupPosts(posts);
 ---
 
-<Layout>
-  {
-    [...grouped.entries()].map(([group, items]) => (
-      <section>
-        {group && <h2>{formatGroupName(group)}</h2>}
-        <ul class="blog-posts">
-          {items.map(post => (
-            <li>
-              <span>
-                <i>
-                  <FormattedDate date={post.data.pubDate} />
-                </i>
-              </span>
-              <a
-                href={generateURL(`/medical/${post.id}/`, undefined, true)}
-                transition:name={`post-title-${post.id}`}
-              >
-                {post.data.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))
-  }
+<Layout title="Medical Projects — Cody Nguyen">
+  <section>
+    <h1>Medical Projects</h1>
+    <p>Health-tech tools and platforms, from study aids to clinical decision support.</p>
+    <div class="project-grid">
+      {
+        posts.map(post => (
+          <ProjectCard
+            title={post.data.title}
+            description={post.data.description}
+            status={post.data.status}
+            href={generateURL(`/medical/${post.id}/`, undefined, true)}
+          />
+        ))
+      }
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+</style>
