@@ -24,13 +24,19 @@ const {
 } = Astro.props;
 
 const faviconURL = generateURL("/favicon.svg");
-const ogImageURL = image.startsWith("http") ? image : generateURL(image);
+const faviconPngURL = generateURL("/favicon-32x32.png");
+const appleTouchIconURL = generateURL("/apple-touch-icon.png");
+const ogImageURL = image.startsWith("http")
+  ? image
+  : generateURL(image, Astro.site ?? Astro.url.origin);
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href={faviconURL} />
+<link rel="icon" type="image/png" sizes="32x32" href={faviconPngURL} />
+<link rel="apple-touch-icon" sizes="180x180" href={appleTouchIconURL} />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font -->
@@ -53,6 +59,9 @@ const ogImageURL = image.startsWith("http") ? image : generateURL(image);
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`${SITE_TITLE} — software engineer working between fields`} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -60,6 +69,7 @@ const ogImageURL = image.startsWith("http") ? image : generateURL(image);
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImageURL} />
+<meta property="twitter:image:alt" content={`${SITE_TITLE} — software engineer working between fields`} />
 
 <meta name="robots" content="index, follow" />
 

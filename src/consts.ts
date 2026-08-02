@@ -11,7 +11,7 @@ export const SOCIAL_LINKS = {
 };
 
 export const SEO_CONFIG = {
-  ogImage: "/hero-img.png",
+  ogImage: "/social-card.png",
   keywords:
     "Cody Nguyen, software engineer, medicine, robotics, machine learning, finance",
 };
